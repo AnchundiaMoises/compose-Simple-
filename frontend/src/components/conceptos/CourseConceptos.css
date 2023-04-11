@@ -1,0 +1,13 @@
+#course- {
+  text-align: center;
+}
+
+#course-conceptos h2 {
+  color: #414040;
+}
+
+#course-conceptos ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}

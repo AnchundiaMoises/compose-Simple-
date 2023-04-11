@@ -1,0 +1,65 @@
+---------------------
+Create Network
+---------------------
+
+docker network create dispositvos-net
+
+---------------------
+Run MongoDB Container
+---------------------
+
+docker run --name mongodb \
+  -e MONGO_INITDB_ROOT_USERNAME=max \
+  -e MONGO_INITDB_ROOT_PASSWORD=secret \
+  -v data:/data/db \
+  --rm \
+  -d \
+  --network dispositvos-net \
+  mongo
+
+---------------------
+Build Node API Image
+---------------------
+
+docker build -t dispositvos-node .
+
+---------------------
+Run Node API Container
+---------------------
+
+docker run --name dispositvos-backend \
+  -e MONGODB_USERNAME=max \
+  -e MONGODB_PASSWORD=secret \
+  -v logs:/app/logs \
+  -v /Users/maximilianschwarzmuller/development/teaching/udemy/docker-complete/backend:/app \
+  -v /app/node_modules \
+  --rm \
+  -d \
+  --network dispositvos-net \
+  -p 80:80 \
+  dispositvos-node
+
+---------------------
+Build React SPA Image
+---------------------
+
+docker build -t dispositvos-react .
+
+---------------------
+Run React SPA Container
+---------------------
+
+docker run --name dispositvos-frontend \
+  -v /Users/maximilianschwarzmuller/development/teaching/udemy/docker-complete/frontend/src:/app/src \
+  --rm \
+  -d \
+  -p 3000:3000 \
+  -it \
+  dispositvos-react
+
+---------------------
+Stop all Containers
+---------------------
+
+docker stop mongodb dispositvos-backend dispositvos-frontend
+
