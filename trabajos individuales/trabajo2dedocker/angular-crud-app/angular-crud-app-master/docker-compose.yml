@@ -1,0 +1,28 @@
+version: "3.8"
+services:
+  frontend:
+    build: .
+    stdin_open: true
+    tty: true
+    volumes:
+      - ./:/app
+      - /app/node_modules
+    
+    ports:
+      - "4200:4200"
+    command: ng serve --host 0.0.0.0 --poll 1000
+  npm:
+      build: .
+      stdin_open: true
+      tty: true
+      volumes:
+        - ./:/app
+      entrypoint: ["npm"]
+
+  ng:
+    build: .
+    stdin_open: true
+    tty: true
+    volumes:
+      - ./:/app
+    entrypoint: ["ng"]
