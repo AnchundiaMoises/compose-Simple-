@@ -15,7 +15,7 @@ EVIDENCIAS CAPTURAS DE IMAGENES
 ![Docker funcional](capturas/backend-ejecutado.png)
 
 2.
-![Docker funcional](capturas/docker hub.png)
+![Docker funcional](capturas/docker-hub.png)
 
 3.
 ![Docker funcional](capturas/docker-dos.png)
